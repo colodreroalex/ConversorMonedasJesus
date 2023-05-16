@@ -44,41 +44,74 @@ namespace ConversorMonedasJesus
 
         }
 
-        public static double ControlConvertir()
+        public static void ControlConvertir()
         {
             TipoConversor convertir = TipoConversor.DolarEuro;
             double cantidad = 0;
             double cantidadAConvertir = 0;
             double cantidadConvertida = 0; 
 
+            //Que opcion de conversion queremos
             convertir = (TipoConversor)Interfaz.OpcionDeConversion((byte)TipoConversor.DolarEuro);
 
             switch (convertir)
             {
                 case TipoConversor.EuroDolar:
+                    //Obtenemmos la linea del fichero 
                     cantidad = GficheroT.ObtenerConversor((byte)TipoConversor.EuroDolar);
+
+                    //Pedios la cantidad al Usuario
                     cantidadAConvertir = Interfaz.pedirCantidad();
                     
+                    //Realizamos la operacion
                     cantidadConvertida = cantidad * cantidadAConvertir;
+
+                    //Mostraos por pantalla
                     Interfaz.MostrarConversion(cantidadConvertida);
 
                     break;
 
 
                 case TipoConversor.DolarEuro:
+                    //Obtenemos la linea del fichero (2)
+                    cantidad = GficheroT.ObtenerConversor((byte)TipoConversor.DolarEuro);
+
+                    //Pedios la cantidad al Usuario
+                    cantidadAConvertir = Interfaz.pedirCantidad();
+
+                    //Realizamos la operacion 
+                    cantidadConvertida = cantidad * cantidadAConvertir;
+
+                    //Mostrar esta por pantalla
+                    Interfaz.MostrarConversion(cantidadConvertida); 
 
                     break; 
             }
 
 
 
-            return cantidadConvertida; 
+            
 
         }
 
         public static void ControlConfiguracion()
         {
-            throw new NotImplementedException();
+            StreamWriter sw = null;
+            string confirmacion;
+            double euro;
+            double dollar; 
+
+            do
+            {
+                euro = Interfaz.IntroducirTasasEuro();
+                dollar = Interfaz.IntroducirTasasDolar();
+
+                GficheroT.GuardarDatos(euro, dollar);
+
+                confirmacion = Interfaz.ConfirmarSalida(); 
+
+            } while (confirmacion.ToLower() == "N"); 
+            
         }
     }
 }

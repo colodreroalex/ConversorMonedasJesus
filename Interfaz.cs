@@ -137,6 +137,36 @@ namespace ConversorMonedasJesus
             Console.WriteLine("Cantidad modificada --> " + cantidad);
             Console.ReadLine(); 
         }
-        
+
+        public static double IntroducirTasasEuro()
+        {
+            double euro; 
+            Console.WriteLine("Introduce las nuevas tasas de conversion: ");
+            Console.Write("1 euro = ");
+
+            euro = Convert.ToDouble(Console.ReadLine());
+
+            return euro; 
+        }
+
+        public static double IntroducirTasasDolar()
+        {
+            double dollar; 
+            Console.WriteLine("Introduce las nuevas tasas de conversion: ");
+            Console.Write("1 dollar = ");
+
+            dollar = Convert.ToDouble(Console.ReadLine());
+
+            return dollar;
+        }
+
+        public static string ConfirmarSalida()
+        {
+            string r; 
+            Console.WriteLine("Desea guardar los cambios en el fichero? S/N");
+            r = Console.ReadLine(); 
+
+            return r; 
+        }
     }
 }

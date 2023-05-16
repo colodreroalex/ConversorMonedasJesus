@@ -40,70 +40,10 @@ namespace ConversorMonedasJesus
             sw.Close(); 
         }
 
-        public static double EuroDolar()
-        {
-            double cantidad = 0;
-            StreamReader lector = null;
 
-            //Abrir Fichero
-            if(!File.Exists(FICHERO)) 
-                throw new FileNotFoundException
-                    ($"No existe el fichero -->{FICHERO} ");
+        
 
-            //Leer Fichero
-            lector = File.OpenText(FICHERO);
-
-            //Convertir cantidad
-            try
-            {
-                cantidad = Convert.ToDouble(lector.ReadLine());
-            }
-            catch (Exception ex)
-            {
-                lector.Close();
-                throw new Exception(ex.Message);
-            }
-
-            //Cerrar Fichero
-            lector.Close(); 
-
-
-            return cantidad; 
-        }
-
-        public static double DolarEuro()
-        {
-            double cantidad = 0;
-            StreamReader lector = null;
-
-            //Abrir Fichero
-            if (!File.Exists(FICHERO))
-                throw new FileNotFoundException
-                    ($"No existe el fichero -->{FICHERO} ");
-
-            //Leer Fichero
-            lector = File.OpenText(FICHERO);
-
-            //Convertir cantidad
-            try
-            {
-                lector.ReadLine(); //La primera linea la lee y no la escribe,
-                                   //ya q me interesa leer la siguiente
-                                   //linea para convertirla
-                cantidad = Convert.ToDouble(lector.ReadLine());
-            }
-            catch (Exception ex)
-            {
-                lector.Close();
-                throw new Exception(ex.Message);
-            }
-
-            //Cerrar Fichero
-            lector.Close();
-
-
-            return cantidad;
-        }
+       
 
         public static double ObtenerConversor(byte linea)
         {
@@ -115,11 +55,13 @@ namespace ConversorMonedasJesus
 
             try
             {
-                //Posicionar el puntero del fichero para leer el dato
-                for (int i = 0; i < linea; i++) lector.ReadLine();
+                //Posicionar el puntero del fichero para leer el dato y convertir la cantidad
+                for (int i = 0; i < linea; i++) 
+                    
+                    cantidad = Convert.ToDouble(lector.ReadLine());
 
                 //Lee el fichero y convierte la cantidad
-                cantidad = Convert.ToDouble(lector.ReadLine()); 
+
 
             }
             catch (Exception ex)
@@ -132,6 +74,71 @@ namespace ConversorMonedasJesus
 
             return cantidad; 
         }
+
+        //public static double EuroDolar()
+        //{
+        //    double cantidad = 0;
+        //    StreamReader lector = null;
+
+        //    //Abrir Fichero
+        //    if (!File.Exists(FICHERO))
+        //        throw new FileNotFoundException
+        //            ($"No existe el fichero -->{FICHERO} ");
+
+        //    //Leer Fichero
+        //    lector = File.OpenText(FICHERO);
+
+        //    //Convertir cantidad
+        //    try
+        //    {
+        //        cantidad = Convert.ToDouble(lector.ReadLine());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lector.Close();
+        //        throw new Exception(ex.Message);
+        //    }
+
+        //    //Cerrar Fichero
+        //    lector.Close();
+
+
+        //    return cantidad;
+        //}
+
+        //public static double DolarEuro()
+        //{
+        //    double cantidad = 0;
+        //    StreamReader lector = null;
+
+        //    //Abrir Fichero
+        //    if (!File.Exists(FICHERO))
+        //        throw new FileNotFoundException
+        //            ($"No existe el fichero -->{FICHERO} ");
+
+        //    //Leer Fichero
+        //    lector = File.OpenText(FICHERO);
+
+        //    //Convertir cantidad
+        //    try
+        //    {
+        //        lector.ReadLine(); //La primera linea la lee y no la escribe,
+        //                           //ya q me interesa leer la siguiente
+        //                           //linea para convertirla
+        //        cantidad = Convert.ToDouble(lector.ReadLine());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lector.Close();
+        //        throw new Exception(ex.Message);
+        //    }
+
+        //    //Cerrar Fichero
+        //    lector.Close();
+
+
+        //    return cantidad;
+        //}
 
     }
 

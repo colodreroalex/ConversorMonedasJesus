@@ -12,7 +12,7 @@ namespace ConversorMonedasJesus
     public static class Controlador
     {
 
-        private enum MenuPrincipal : byte { Salir, Configurar, Convertir }
+        private enum MenuPrincipal : byte { Salir, Configurar, Convertir, Default }
 
         public static void ControlPrincipal()
         {
@@ -26,7 +26,7 @@ namespace ConversorMonedasJesus
             do
             {
 
-                menu = (MenuPrincipal)Interfaz.OpcionMPrincipal((byte)MenuPrincipal.Convertir);
+                menu = (MenuPrincipal)Interfaz.OpcionMPrincipal((byte)MenuPrincipal.Default);
 
                 switch (menu)
                 {
@@ -36,6 +36,9 @@ namespace ConversorMonedasJesus
                         case MenuPrincipal.Convertir:
                         ControlConvertir(); 
                         break;
+                    case MenuPrincipal.Default:
+                        GficheroT.GuardarDatos(1.3635, 0.7374); 
+                        break;
                 }
 
             } while (menu != MenuPrincipal.Salir); 
@@ -43,6 +46,8 @@ namespace ConversorMonedasJesus
             //DESPEDIDA
 
         }
+
+        
 
         public static void ControlConvertir()
         {
@@ -60,7 +65,7 @@ namespace ConversorMonedasJesus
                     //Obtenemmos la linea del fichero 
                     cantidad = GficheroT.ObtenerConversor((byte)TipoConversor.EuroDolar);
 
-                    //Pedios la cantidad al Usuario
+                    //Pedimos la cantidad al Usuario
                     cantidadAConvertir = Interfaz.pedirCantidad();
                     
                     //Realizamos la operacion

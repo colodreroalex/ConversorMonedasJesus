@@ -17,6 +17,7 @@ namespace ConversorMonedasJesus
             Console.WriteLine("0. Salir de la aplicacion");
             Console.WriteLine("1. Modificar las tasas de conversión actuales");
             Console.WriteLine("2. Realizar conversion de monedas");
+            Console.WriteLine("3. Setear valores a default");
             Console.WriteLine("Seleccione una opción:");
 
 
